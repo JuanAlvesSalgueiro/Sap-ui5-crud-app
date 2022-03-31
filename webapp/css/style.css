@@ -1,0 +1,59 @@
+/* Enter your custom styles here */
+.gridItem {
+    margin: 20px;
+    border-radius: 50%;
+    background-color: whitesmoke
+}
+
+.title{
+    font-weight: 500;
+    font-family: monospace;
+}
+
+.HBox Button {
+    margin: 3px;
+}
+
+.buttonContainer{
+    display: flex;
+    align-items: center;
+    margin-right: 20px;
+    
+}
+
+.buttonContainer Button{
+    margin: 5px;
+}
+
+.gridList{
+    margin-left: 30px;
+    
+    
+}
+
+.link {
+    font-size: 18px;
+    font-weight: bolder;
+}
+
+.imagenJugador{
+    margin-top: 10px;
+    margin-left: 5px;
+}
+
+.labelInfoInscripcion{
+    font-size: 16px;
+} 
+
+.textInfoInscripcion{
+    font-size: 15px;
+}
+
+.prueba{
+    margin-left: 10px;
+}
+
+.labelInfoTorneo{
+    font-size: 16px;
+}
+

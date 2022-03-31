@@ -1,0 +1,32 @@
+<core:FragmentDefinition xmlns="sap.m"
+    xmlns:l="sap.ui.layout"
+    xmlns:f="sap.ui.layout.form"
+    xmlns:core="sap.ui.core">
+    <Dialog title="{i18n>dialogInfoInscripcionTitle}" id="dialogInfoTorneo" busyIndicatorDelay="0" contentWidth="15%">
+        <VBox class="sapUiSmallMargin">
+            <ObjectHeader class="headerInfoTorneo" icon="{i18n>infoInscripcionIconHeader}" iconDensityAware="false" iconAlt="img" responsive="true" title="{i18n>infoInscripcionHeaderTitle}">
+
+            </ObjectHeader>
+            <f:SimpleForm id="SimpleFormDisplay354" editable="false" layout="ResponsiveGridLayout" labelSpanXL="3" labelSpanL="3" labelSpanM="3" labelSpanS="12" adjustLabelSpan="false" emptySpanXL="4" emptySpanL="4" emptySpanM="4" emptySpanS="0" columnsXL="1" columnsL="1" columnsM="1" singleContainerFullSize="false">
+                <f:content >
+                    <Label class="labelInfoInscripcion" text="{i18n>infoInscripcionLabelNombreJugador}" design="Bold"/>
+                    <Text class="textInfoInscripcion" id="nameText" text="{ModeloLocalInfoInscripcion>/NombreJugador}" />
+                    <Label class="labelInfoInscripcion" text="{i18n>infoInscripcionLabelRanking}" design="Bold"/>
+                    <Text class="textInfoInscripcion" text="{ModeloLocalInfoInscripcion>/Ranking}" />
+                    <Label class="labelInfoInscripcion" text="{i18n>infoInscripcionLabelEdad}" design="Bold"/>
+                    <Text class="textInfoInscripcion" text="{ModeloLocalInfoInscripcion>/Edad}" />
+                    <Label class="labelInfoInscripcion" text="{i18n>infoInscripcionLabelGenero}" design="Bold"/>
+                    <Text class="textInfoInscripcion" text="{ModeloLocalInfoInscripcion>/Genero}" />
+                    <Label class="labelInfoInscripcion" text="{i18n>infoInscripcionLabelPuntos}" design="Bold"/>
+                    <Text class="textInfoInscripcion" text="{ModeloLocalInfoInscripcion>/Puntos}" />
+                    <Label class="labelInfoInscripcion" text="{i18n>infoInscripcionLabelSponsor}" design="Bold"/>
+                    <Text class="textInfoInscripcion" text="{ModeloLocalInfoInscripcion>/Sponsor}" />
+                </f:content>
+            </f:SimpleForm>
+        </VBox>
+        <buttons>
+            <Button type="Back" text="{ModeloLocalInfoInscripcion>/infoInscripcionBtnSalir}" press="onCloseDialogInfoInscripcion"/>
+
+        </buttons>
+    </Dialog>
+</core:FragmentDefinition>

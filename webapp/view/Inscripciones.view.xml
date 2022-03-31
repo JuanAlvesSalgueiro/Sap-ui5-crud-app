@@ -1,0 +1,79 @@
+<mvc:View controllerName="Academia2022.zluuc3tenis.controller.Inscripciones"
+    xmlns:core="sap.ui.core"
+    xmlns:mvc="sap.ui.core.mvc"
+    xmlns="sap.m"
+    xmlns:fb="sap.ui.comp.filterbar">
+    <App id="app2">
+        <pages>
+            <Page id="pageInscripciones" showHeader="false">
+
+                <ObjectHeader id="headerInscripciones" icon= "{ModeloLocalTorneo>/img}" iconAlt="{ModeloLocalTorneo>/Lugar}" responsive="true" title="{ModeloLocalTorneo>/NombreTorneo}" intro="{ModeloLocalTorneo>/Lugar}" class="sapUiResponsivePadding--header">
+                    <ObjectAttribute title="{i18n>infoLabelFechaInicio}" text=" {ModeloLocalTorneo>/FechaInicio}" />
+                    <ObjectAttribute title="{i18n>infoLabelFechaFin}" text=" {ModeloLocalTorneo>/FechaFin}" />
+                    <ObjectAttribute title="{i18n>infoLabelPuntos}" text="{ModeloLocalTorneo>/Puntos}" />
+                    <ObjectAttribute title="{i18n>infoLabelSuperficie}" text="{ModeloLocalTorneo>/tipoSuperficie}" />
+                    <ObjectAttribute title="{i18n>infoLabelRankMinimo}" text="{ModeloLocalTorneo>/MinRanking}" />
+                    <ObjectAttribute title="{i18n>infoLabelMaxJugadores}" text="{ModeloLocalTorneo>/MaxJugadores}" />
+                </ObjectHeader>
+
+
+                <fb:FilterBar id="filterbar" showRestoreOnFB="true" reset="onReset" search="onSearch" useToolbar="false" showGoOnFB="false">
+                    <fb:filterItems>
+                        <fb:FilterItem name="A" label="{i18n>filterLabelGenero}">
+                            <fb:control>
+                                <Select id="idGenero" forceSelection="false" change="onFiltrarInscripciones" items="{path: '/GeneroSet'}">
+                                    <core:ListItem key="{CodSexo}" text="{Sexo}" icon="sap-icon://employee"/>
+
+                                </Select>
+                            </fb:control>
+                        </fb:FilterItem>
+                        <fb:FilterItem name="idPuntosSelect" label="{i18n>filterLabelSponsor}" id="puntosSelect">
+                            <fb:control>
+                                <MultiComboBox id="idSponsor" selectionChange="handleSelectionSponsors" selectionFinish="onFiltrarInscripciones" width="350px" items="{path: '/SponsorsSet'}">
+                                    <core:Item key="{CodSponsor}" text="{Sponsor}"/>
+                                </MultiComboBox>
+                            </fb:control>
+                        </fb:FilterItem>
+                        <fb:FilterItem name="idPuntosMinimoSelect" label="{i18n>filterLabelPuntosMinimo}" id="minPuntosSelect">
+                            <fb:control>
+                                <Input id="idPuntosMin" placeholder="Puntos" change="onFiltrarInscripciones"></Input>
+                            </fb:control>
+
+                        </fb:FilterItem>
+                        <fb:FilterItem name="idPuntosMaximoSelect" label="{i18n>filterLabelPuntosMaximo}" id="maxPuntosSelect">
+                            <fb:control>
+                                <Input id="idPuntosMax" placeholder="Puntos" change="onFiltrarInscripciones"></Input>
+                            </fb:control>
+
+                        </fb:FilterItem>
+
+                    </fb:filterItems>
+                    <HBox >
+                        <Button icon="sap-icon://add" type="Emphasized" press="onAddInscripcion" text="{i18n>btnAñadirInscripcionText}"></Button>
+                        <Button class="prueba" icon="sap-icon://numbered-text" type="Ghost" press="ordenarInscripciones" text="{i18n>btnOrdenarText}"></Button>
+                    </HBox>
+
+                </fb:FilterBar>
+                <List id="listInscripciones" headerText="{i18n>listHeaderText}" mode="None" items="{ModeloLocalInscripciones>/}">
+                    <CustomListItem>
+                        <HBox justifyContent="SpaceBetween">
+                            <HBox >
+                                <Image class="imagenJugador" src="{i18n>iconJugador}"></Image>
+                                <VBox class="sapUiSmallMarginBegin sapUiSmallMarginTopBottom listInscripciones">
+                                    <Link class="link" text="{ModeloLocalInscripciones>NombreJugador}" press="visualizarInfoInscripcion"/>
+                                    <Label text="Puntos: {ModeloLocalInscripciones>Puntos}"/>
+
+                                </VBox>
+                            </HBox>
+                            <HBox class="buttonContainer">
+                                <Button icon="sap-icon://edit" press="editarInscripcion" text="EDITAR"></Button>
+                                <Button icon="sap-icon://sys-cancel" press="eliminarInscripcion" type="Reject" text="ELIMINAR"></Button>
+                            </HBox>
+                        </HBox>
+                    </CustomListItem>
+                </List>
+            </Page>
+        </pages>
+    </App>
+
+</mvc:View>

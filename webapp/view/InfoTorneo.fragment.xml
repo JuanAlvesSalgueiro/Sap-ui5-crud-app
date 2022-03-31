@@ -1,0 +1,41 @@
+<core:FragmentDefinition xmlns="sap.m"
+    xmlns:core="sap.ui.core"
+    xmlns:f="sap.ui.layout.form"
+    xmlns:l="sap.ui.layout">
+
+    <Dialog title="{i18n>dialogInfoTorneoTitle}" id="dialogAddInscripcion" busyIndicatorDelay="0" contentWidth="15%">
+
+
+        <ObjectHeader class="headerInfoTorneo" icon="{ModeloLocalInfoTorneo>/img}" iconDensityAware="false" iconAlt="{ModeloLocalInfoTorneo>/Lugar}" imageShape="Circle" responsive="true" title="{ModeloLocalInfoTorneo>/NombreTorneo}" intro="{ModeloLocalInfoTorneo>/Lugar}">
+
+        </ObjectHeader>
+        <l:VerticalLayout class="sapUiContentPadding" width="100%">
+            <l:content>
+                <Label class="labelInfoTorneo" text="{i18n>infoLabelFechaInicio}" design="Bold" />
+                <ObjectAttribute class="textInfoInscripcion" text="{ModeloLocalInfoTorneo>/FechaInicio}" />
+
+                <Label class="labelInfoTorneo" text="{i18n>infoLabelFechaFin}" design="Bold" />
+                <ObjectAttribute class="textInfoInscripcion" text="{ModeloLocalInfoTorneo>/FechaFin}" />
+
+                <Label class="labelInfoTorneo" text="{i18n>infoLabelPuntos}" design="Bold" />
+                <ObjectAttribute class="textInfoInscripcion" text="{ModeloLocalInfoTorneo>/Puntos}"/>
+
+                <Label class="labelInfoTorneo" text="{i18n>infoLabelRankMinimo}" design="Bold" />
+                <ObjectAttribute class="textInfoInscripcion" text="{ModeloLocalInfoTorneo>/MinRanking}"/>
+
+                <Label class="labelInfoTorneo" text="{i18n>infoLabelMaxJugadores}" design="Bold" />
+                <ObjectAttribute class="textInfoInscripcion" text="{ModeloLocalInfoTorneo>/MaxJugadores}"/>
+
+                <Label class="labelInfoTorneo" text="{i18n>infoLabelSuperficie}" design="Bold" />
+                <ObjectAttribute class="textInfoInscripcion" text="{ModeloLocalInfoTorneo>/tipoSuperficie}"/>
+
+
+            </l:content>
+        </l:VerticalLayout>
+
+        <buttons>
+            <Button type="Back" text="{i18n>btnSalir}" press="onCloseDialogInfoTorneo"/>
+
+        </buttons>
+    </Dialog>
+</core:FragmentDefinition>

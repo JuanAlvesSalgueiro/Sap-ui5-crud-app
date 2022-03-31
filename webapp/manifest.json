@@ -1,0 +1,152 @@
+{
+    "_version": "1.28.0",
+    "sap.app": {
+        "id": "Academia2022.zluuc3tenis",
+        "type": "application",
+        "i18n": "i18n/i18n.properties",
+        "applicationVersion": {
+            "version": "0.0.1"
+        },
+        "title": "{{appTitle}}",
+        "description": "{{appDescription}}",
+        "resources": "resources.json",
+        "dataSources": {
+            "mainService": {
+                "uri": "/sap/opu/odata/sap/ZOS_ACADEMIA_TENIS_SRV/",
+                "type": "OData",
+                "settings": {
+                    "annotations": [],
+                    "localUri": "localService/metadata.xml",
+                    "odataVersion": "2.0"
+                }
+            }
+        },
+        "crossNavigation": {
+            "inbounds": {
+                "Academia2022.zluuc3tenis-inbound": {
+                    "signature": {
+                        "parameters": {},
+                        "additionalParameters": "allowed"
+                    },
+                    "semanticObject": "Torneos",
+                    "action": "Display",
+                    "title": "Torneos de tenis",
+                    "subTitle": "Visualización",
+                    "icon": "sap-icon://competitor"
+                }
+            }
+        }
+    },
+    "sap.ui": {
+        "technology": "UI5",
+        "icons": {
+            "icon": "",
+            "favIcon": "",
+            "phone": "",
+            "phone@2": "",
+            "tablet": "",
+            "tablet@2": ""
+        },
+        "deviceTypes": {
+            "desktop": true,
+            "tablet": true,
+            "phone": true
+        }
+    },
+    "sap.ui5": {
+        "flexEnabled": false,
+        "dependencies": {
+            "minUI5Version": "1.84.1",
+            "libs": {
+                "sap.m": {},
+                "sap.ui.core": {},
+                "sap.f": {},
+                "sap.suite.ui.generic.template": {},
+                "sap.ui.comp": {},
+                "sap.ui.generic.app": {},
+                "sap.ui.table": {},
+                "sap.ushell": {}
+            }
+        },
+        "contentDensities": {
+            "compact": true,
+            "cozy": true
+        },
+        "models": {
+            "i18n": {
+                "type": "sap.ui.model.resource.ResourceModel",
+                "settings": {
+                    "bundleName": "Academia2022.zluuc3tenis.i18n.i18n"
+                }
+            },
+            "": {
+                "dataSource": "mainService",
+                "preload": true,
+                "settings": {
+                    "disableHeadRequestForToken": true,
+                    "useBatch": false
+                }    
+            }
+        },
+        "resources": {
+            "css": [
+                {
+                    "uri": "css/style.css"
+                }
+            ]
+        },
+        "routing": {
+            "config": {
+                "routerClass": "sap.m.routing.Router",
+                "viewType": "XML",
+                "async": true,
+                "viewPath": "Academia2022.zluuc3tenis.view",
+                "controlAggregation": "pages",
+                "controlId": "app",
+                "clearControlAggregation": false
+            },
+            "routes": [
+                {
+                    "name": "RouteTorneos",
+                    "pattern": "RouteTorneos",
+                    "target": [
+                        "TargetTorneos"
+                    ]
+                },
+                {
+                    "name": "inscripciones",
+                    "pattern": "InscripcionesSet/{NombreTorneo}",
+                    "target": [
+                        "TargetInscripciones"
+                    ]
+                }
+            ],
+            "targets": {
+                "TargetTorneos": {
+                    "viewType": "XML",
+                    "transition": "slide",
+                    
+
+                    "viewName": "Torneos"
+                },
+                "TargetInscripciones": {
+                    "viewType": "XML",
+                    "transition": "slide",
+                    
+                    "viewName": "Inscripciones"
+                }
+            }
+        },
+        "rootView": {
+            "viewName": "Academia2022.zluuc3tenis.view.Torneos",
+            "type": "XML",
+            "async": true,
+            "id": "Torneos"
+        }
+    },
+    "sap.cloud": {
+        "public": true,
+        "service": "Academia2022-zluuc3tenis"
+    }
+    
+}

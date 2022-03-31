@@ -1,0 +1,43 @@
+<core:FragmentDefinition xmlns="sap.m"
+    xmlns:core="sap.ui.core"
+    xmlns:f="sap.ui.layout.form"
+    xmlns:l="sap.ui.layout">
+
+    <Dialog title="{i18n>AgregarInscripcionTitle}" id="dialogAddInscripcion" busyIndicatorDelay="0" contentWidth="30%">
+        <VBox class="sapUiSmallMargin">
+
+            <f:SimpleForm id="SimpleFormChangeColumn_oneGroup" editable="true" layout="ColumnLayout" title="{i18n>simpleFormAgregarInscripcionTitle}">
+                <Label text="{i18n>agregarInscripcionLabelNombreJugador}" labelFor="inputText" />
+                <Input id="inputNombre" value="" type="Text" placeholder="Nombre del jugador" />
+
+                <Label text="{i18n>agregarInscripcionLabelRanking}" labelFor="inputNumber" />
+                <Input id="inputRanking" value="" type="Number" placeholder="Ranking del jugador" />
+
+                <Label text="{i18n>agregarInscripcionLabelEdad}" labelFor="inputNumber" />
+                <Input id="inputEdad" value="" type="Number" placeholder="Edad del jugador" />
+
+                <Label text="{i18n>agregarInscripcionLabelGenero}" labelFor="inpurText" />
+                <Select id="selectGenero" forceSelection="false" items="{path: '/GeneroSet'}" selectedKey="{CodSexo}">
+                    <core:ListItem key="{CodSexo}" text="{Sexo}" />
+                    <layoutData>
+                        <f:ColumnElementData cellsSmall="4" cellsLarge="3" />
+                    </layoutData>
+                </Select>
+                <Label text="{i18n>agregarInscripcionLabelPuntos}" labelFor="inputNumber" />
+                <Input id="inputPuntos" value="" type="Number" placeholder="Puntos del jugador" />
+                <Label text="{i18n>agregarInscripcionLabelSponsor}" labelFor="inputText" />
+                <Select id="selectSponsor" forceSelection="false" items="{path: '/SponsorsSet'}" selectedKey="{CodSponsor}">
+                    <core:ListItem key="{CodSponsor}" text="{Sponsor}" />
+                    <layoutData>
+                        <f:ColumnElementData cellsSmall="4" cellsLarge="3" />
+                    </layoutData>
+                </Select>
+            </f:SimpleForm>
+        </VBox>
+
+        <buttons>
+            <Button icon="{i18n>agregarInscripcionBtnCancelIcon}" type="Reject" text="{i18n>agregarInscripcionBtnCancelText}" press="onCloseDialogInscripciones"/>
+            <Button icon="{i18n>agregarInscripcionBtnSavelIcon}" text="{i18n>agregarInscripcionBtnSaveText}" press="onSaveInscripcion" type="Emphasized"/>
+        </buttons>
+    </Dialog>
+</core:FragmentDefinition>

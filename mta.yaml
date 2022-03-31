@@ -1,0 +1,94 @@
+_schema-version: "3.2"
+ID: Academia2022-zluuc3tenis
+description: VIsualisacion y gestion de torneos de tenis.
+version: 0.0.1
+modules:
+- name: Academia2022-zluuc3tenis-dest-content
+  type: com.sap.application.content
+  requires:
+  - name: Academia2022-zluuc3tenis-dest-srv
+    parameters:
+      content-target: true
+  - name: Academia2022-zluuc3tenis-repo-host
+    parameters:
+      service-key:
+        name: Academia2022-zluuc3tenis-repo-host-key
+  - name: Academia2022-zluuc3tenis-uaa
+    parameters:
+      service-key:
+        name: Academia2022-zluuc3tenis-uaa-key
+  parameters:
+    content:
+      instance:
+        destinations:
+        - Name: Academia2022-zluuc3tenis_repo_host
+          ServiceInstanceName: Academia2022-zluuc3tenis-html5-srv
+          ServiceKeyName: Academia2022-zluuc3tenis-repo-host-key
+          sap.cloud.service: Academia2022-zluuc3tenis
+        - Authentication: OAuth2UserTokenExchange
+          Name: Academia2022-zluuc3tenis_uaa
+          ServiceInstanceName: Academia2022-zluuc3tenis-xsuaa-srv
+          ServiceKeyName: Academia2022-zluuc3tenis-uaa-key
+          sap.cloud.service: Academia2022-zluuc3tenis
+        existing_destinations_policy: ignore
+  build-parameters:
+    no-source: true
+- name: Academia2022-zluuc3tenis-app-content
+  type: com.sap.application.content
+  path: .
+  requires:
+  - name: Academia2022-zluuc3tenis-repo-host
+    parameters:
+      content-target: true
+  build-parameters:
+    build-result: resources
+    requires:
+    - artifacts:
+      - Academia2022zluuc3tenis.zip
+      name: Academia2022zluuc3tenis
+      target-path: resources/
+- name: Academia2022zluuc3tenis
+  type: html5
+  path: .
+  build-parameters:
+    build-result: dist
+    builder: custom
+    commands:
+    - npm install
+    - npm run build:cf
+    supported-platforms: []
+resources:
+- name: Academia2022-zluuc3tenis-dest-srv
+  type: org.cloudfoundry.managed-service
+  parameters:
+    config:
+      HTML5Runtime_enabled: true
+      init_data:
+        instance:
+          destinations:
+          - Authentication: NoAuthentication
+            Name: ui5
+            ProxyType: Internet
+            Type: HTTP
+            URL: https://ui5.sap.com
+          existing_destinations_policy: update
+      version: 1.0.0
+    service: destination
+    service-name: Academia2022-zluuc3tenis-dest-srv
+    service-plan: lite
+- name: Academia2022-zluuc3tenis-uaa
+  type: org.cloudfoundry.managed-service
+  parameters:
+    path: ./xs-security.json
+    service: xsuaa
+    service-name: Academia2022-zluuc3tenis-xsuaa-srv
+    service-plan: application
+- name: Academia2022-zluuc3tenis-repo-host
+  type: org.cloudfoundry.managed-service
+  parameters:
+    service: html5-apps-repo
+    service-name: Academia2022-zluuc3tenis-html5-srv
+    service-plan: app-host
+parameters:
+  deploy_mode: html5-repo
+  enable-parallel-deployments: true

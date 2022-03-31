@@ -1,0 +1,42 @@
+<core:FragmentDefinition xmlns="sap.m"
+    xmlns:core="sap.ui.core"
+    xmlns:f="sap.ui.layout.form"
+    xmlns:l="sap.ui.layout">
+
+    <Dialog title="{i18n>dialogEditarInscripcionTitle}" id="dialogEditarInscripcion" busyIndicatorDelay="0" contentWidth="30%">
+        <VBox class="sapUiSmallMargin">
+            <f:SimpleForm id="SimpleFormChangeColumn_oneGroup" editable="true" layout="ColumnLayout" title="{i18n>simpleFormEditarInscripcionTitle}">
+                <Label text="{i18n>editarInscripcionLabelNombreJugador}" labelFor="inputText" />
+                <Text id="editarNombre" text="{ModeloLocalEditarInscripcion>/NombreJugador}"></Text>
+
+                <Label text="{i18n>editarInscripcionLabelRanking}" labelFor="inputNumber" />
+                <Input id="editarRanking" value="{ModeloLocalEditarInscripcion>/Ranking}" type="Text" placeholder="Ranking del jugador" />
+
+                <Label text="{i18n>editarInscripcionLabelEdad}" labelFor="inputNumber" />
+                <Input id="editarEdad" value="{ModeloLocalEditarInscripcion>/Edad}" type="Text" placeholder="Edad del jugador" />
+
+                <Label text="{i18n>editarInscripcionLabelGenero}" labelFor="inpurText" />
+                <Select id="editarGenero" forceSelection="true" items="{path: '/GeneroSet'}" selectedKey="{CodSexo}">
+                    <core:ListItem key="{CodSexo}" text="{Sexo}" />
+                    <layoutData>
+                        <f:ColumnElementData cellsSmall="4" cellsLarge="3" />
+                    </layoutData>
+                </Select>
+                <Label text="{i18n>editarInscripcionLabelPuntos}" labelFor="inputNumber" />
+                <Input id="editarPuntos" value="{ModeloLocalEditarInscripcion>/Puntos}" type="Text" placeholder="Puntos del jugador" />
+                <Label text="{i18n>editarInscripcionLabelSponsor}" labelFor="inputText" />
+                <Select id="editarSponsor" forceSelection="true" items="{path: '/SponsorsSet'}" selectedKey="{CodSponsor}">
+                    <core:ListItem key="{CodSponsor}" text="{Sponsor}" />
+                    <layoutData>
+                        <f:ColumnElementData cellsSmall="4" cellsLarge="3" />
+                    </layoutData>
+                </Select>
+            </f:SimpleForm>
+        </VBox>
+
+        <buttons>
+            <Button icon="{i18n>editarInscripcionBtnCancelIcon}" type="Reject" text="{i18n>editarInscripcionBtnCancelText}" press="onCloseDialogEditarInscripciones"/>
+            <Button icon="{i18n>editarInscripcionBtnSavelIcon}" text="{i18n>editarInscripcionBtnSaveText}" press="onSaveEditarInscripcion" type="Emphasized"/>
+        </buttons>
+    </Dialog>
+</core:FragmentDefinition>

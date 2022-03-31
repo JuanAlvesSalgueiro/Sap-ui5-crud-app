@@ -1,0 +1,83 @@
+<mvc:View controllerName="Academia2022.zluuc3tenis.controller.Torneos"
+    xmlns:mvc="sap.ui.core.mvc" displayBlock="true"
+    xmlns="sap.m"
+    xmlns:grid="sap.ui.layout.cssgrid"
+    xmlns:f="sap.f"
+    xmlns:core="sap.ui.core"
+    xmlns:fb="sap.ui.comp.filterbar"
+    xmlns:vm="sap.ui.comp.variants" height="100%">
+
+
+    <Shell id="shell">
+        <App id="app">
+            <pages>
+                <Page id="page" showHeader="false">
+                    <content>
+                        <ObjectHeader id="headerInscripciones" icon= "{i18n>ObjectHeaderIcon}" iconAlt="Tenis" responsive="true" title="{i18n>ObjectHeaderTitle}" intro="{i18n>ObjectHeaderIntro}" class="sapUiResponsivePadding--header">
+                            <ObjectAttribute title="{i18n>ObjectAttributeFundacion}" text="{i18n>ObjectAttributeFundacionText}" active="true" />
+                            <ObjectAttribute title="{i18n>ObjectAttributePresidente}" text="{i18n>ObjectAttributePresidenteText}" active="true" />
+                            <ObjectAttribute title="{i18n>ObjectAttributeSedeCentral}" text="{i18n>ObjectAttributeSedeCentralText}" active="true"/>
+                            <ObjectAttribute title="{i18n>ObjectAttributeSitioOficial}" text="{i18n>ObjectAttributeSitioOficialText}" active="true"/>
+
+                        </ObjectHeader>
+                        <fb:FilterBar id="filterbar" showRestoreOnFB="true" reset="onReset" search="onSearch" useToolbar="false" showGoOnFB="false">
+                            <fb:filterItems>
+                                <fb:FilterItem name="A" label="{i18n>Superficie}">
+                                    <fb:control>
+                                        <Select id="idSuperficie" forceSelection="false" change="onFiltrarTorneos" items="{ModeloLocalSuperficie>/}">
+                                            <core:ListItem key="{ModeloLocalSuperficie>CodSuperficie}" text="{ModeloLocalSuperficie>Superficie}" icon="{ModeloLocalSuperficie>img}"/>
+
+                                        </Select>
+                                    </fb:control>
+                                </fb:FilterItem>
+                                <fb:FilterItem name="idPuntosSelect" label="{i18n>filterLabelPuntos}" id="puntosSelect">
+                                    <fb:control>
+                                        <Select id="idPuntos" forceSelection="false" change="onFiltrarTorneos" >
+                                            <core:ListItem key="{i18n>listItemRankingPuntos1}" text="{i18n>listItemRankingPuntos1}" />
+                                            <core:ListItem key="{i18n>listItemRankingPuntos2}" text="{i18n>listItemRankingPuntos2}"/>
+                                            <core:ListItem key="{i18n>listItemRankingPuntos3}" text="{i18n>listItemRankingPuntos3}"/>
+                                        </Select>
+                                    </fb:control>
+                                </fb:FilterItem>
+                                <fb:FilterItem name="idRankingMinimoSelect" label="{i18n>filterLabelRankingMinimo}" id="minRankingSelect">
+                                    <fb:control>
+                                        <Select id="idMinRanking" forceSelection="false" change="onFiltrarTorneos" >
+                                            <core:ListItem key="{i18n>listItemRankingMinimo1}" text="{i18n>listItemRankingMinimo1}" />
+                                            <core:ListItem key="{i18n>listItemRankingMinimo2}" text="{i18n>listItemRankingMinimo2}"/>
+                                            <core:ListItem key="{i18n>listItemRankingMinimo3}" text="{i18n>listItemRankingMinimo3}"/>
+                                        </Select>
+                                    </fb:control>
+                                </fb:FilterItem>
+
+                            </fb:filterItems>
+                        </fb:FilterBar>
+                        <f:GridList id="gridList" class="gridList" items="{ModeloLocalTorneos>/}">
+                            <f:customLayout>
+                                <grid:GridBoxLayout boxWidth="300px" />
+                            </f:customLayout>
+
+                            <f:GridListItem class="gridItem">
+                                <VBox class="sapUiSmallMargin">
+                                    <layoutData>
+                                        <FlexItemData growFactor="1" shrinkFactor="0" />
+                                    </layoutData>
+
+                                    <Image src="{ModeloLocalTorneos>img}"></Image>
+                                    <Title class="title" text="{ModeloLocalTorneos>NombreTorneo}" wrapping="true" />
+                                    <Label text="{ModeloLocalTorneos>Lugar}" wrapping="true" />
+
+                                    <HBox alignItems="Center" class="HBox">
+                                        <Button press="onVisualizarIncripciones" type="Emphasized" text="{i18n>btnInscribirseText}"></Button>
+                                        <Button press="infoTorneo" icon="{i18n>iconInfo}" text="{i18n>btnInfoText}"></Button>
+
+                                    </HBox>
+                                </VBox>
+                            </f:GridListItem>
+                        </f:GridList>
+
+                    </content>
+                </Page>
+            </pages>
+        </App>
+    </Shell>
+</mvc:View>
